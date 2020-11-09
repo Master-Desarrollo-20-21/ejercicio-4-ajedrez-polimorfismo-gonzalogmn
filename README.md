@@ -1,4 +1,7 @@
 # ProgramacionOO-Ejercicio4-polimorfismo
+
+![](chess.png)
+
 Ejercicio de Programación Orientada a Objetos para practicar polimorfismo
 
 En este ejercicio se propone la realización de las partes básicas de un juego del ajedrez. En este Juego nos vamos a centrar en el movimiento de las fichas esencial, descartando todas las reglas del juego que puedan tener más complejidad que la básica.

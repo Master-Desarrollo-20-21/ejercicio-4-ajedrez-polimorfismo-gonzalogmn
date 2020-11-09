@@ -1,0 +1,72 @@
+@startuml
+
+class Chess {
+    void play()
+}
+
+class Board {
+    boolean isInBoard(Position position)
+    boolean hasPiece(Position position, Color color)
+    boolean hasKing(Color color)
+    void move(Position piecePosition, Position destination, Color movementColor)
+    void delete(Position piecePosition)
+    void show()
+}
+
+class Piece {
+    Piece(Position position)
+    boolean isAllowedMovement(Position destination)
+}
+
+class King {
+
+}
+
+class Knight {
+
+}
+
+class Pawn {
+
+}
+
+class Player {
+    void move()
+    Color getColor()
+}
+
+
+class Console {
+
+}
+
+
+class Position {
+    Position(String coordinate)
+    static boolean isValid(String coordinate)
+}
+
+enum Color {
+
+}
+
+
+Chess *-- Board
+Chess *-- "2" Player
+
+Player .. Color
+Piece .. Color
+
+Piece <|-- King
+Piece <|-- Pawn
+Piece <|-- Knight
+
+Piece *-- "1" Position
+
+
+Board *-- "22" Piece
+
+Player .. Console
+Player -- Board
+
+@enduml
