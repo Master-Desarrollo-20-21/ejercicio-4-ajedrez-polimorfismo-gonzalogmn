@@ -23,7 +23,24 @@ public abstract class Piece {
         this.position = position;
     }
 
-    public abstract boolean canMove(Position toPosition);
+    public boolean canMove(Position toPosition, Board board) {
+        Position[] possibleMovements = getPossibleMovements(board);
+
+        for(Position position: possibleMovements) {
+            if(position.equals(toPosition)) return true;
+        }
+        return false;
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
+    public abstract Position[] getPossibleMovements(Board board);
 
     public abstract boolean isKing();
 

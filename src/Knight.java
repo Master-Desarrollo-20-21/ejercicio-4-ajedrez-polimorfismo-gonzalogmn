@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Knight extends Piece {
     public Knight(Position position, Color color) {
         super(position, color);
@@ -14,7 +17,41 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean canMove(Position toPosition) {
-        return true;
+    public Position[] getPossibleMovements(Board board) {
+        List<Position> possibleMovements = new ArrayList<>();
+
+        if(board.isInBoard(this.getPosition().adding(1,2))) {
+            possibleMovements.add(this.getPosition().adding(1,2));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(1,-2))) {
+            possibleMovements.add(this.getPosition().adding(1,-2));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(2,1))) {
+            possibleMovements.add(this.getPosition().adding(2,1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(2,-1))) {
+            possibleMovements.add(this.getPosition().adding(2,-1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(-2,-1))) {
+            possibleMovements.add(this.getPosition().adding(-2,-1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(-2,1))) {
+            possibleMovements.add(this.getPosition().adding(-2,1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(-1,-2))) {
+            possibleMovements.add(this.getPosition().adding(-1,-2));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(-1,2))) {
+            possibleMovements.add(this.getPosition().adding(-1,2));
+        }
+
+        return (Position[]) possibleMovements.toArray();
     }
 }

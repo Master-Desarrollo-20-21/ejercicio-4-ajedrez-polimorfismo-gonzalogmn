@@ -3,7 +3,8 @@ import java.util.Arrays;
 public class Board {
     private Piece[] pieces;
 
-    public final static char[] ROWS = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    public final static char[] ROWS = new char[]{1, 2, 3, 4, 5, 6, 7, 8};
+    public static char[] ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     public final static int[] COLUMNS = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
 
     public Board() {
@@ -64,7 +65,7 @@ public class Board {
             this.deletePiece(toPosition);
         };
 
-        if(piece.canMove(toPosition)) {
+        if(piece.canMove(toPosition, this)) {
             piece.move(toPosition);
         }
         
@@ -73,9 +74,9 @@ public class Board {
     public void show() {
         Console console = new Console();
         for(int i = COLUMNS.length - 1; i >= 0; i--) {
-            console.out(String.valueOf(COLUMNS[i]) + "> ");
-            for(char row: ROWS) {
-                Position position = new Position(row + String.valueOf(COLUMNS[i]));
+            console.out(i + "> ");
+            for(int j = 0; j < ROWS.length; j++) {
+                Position position = new Position(ROWS[j] + String.valueOf(COLUMNS[i]));
                 if(this.hasAnyPiece(position)) {
                     Piece piece = this.getPiece(position);
                     console.out(piece.getRepresentation() + " ");
@@ -97,7 +98,7 @@ public class Board {
         console.out("  ");
 
         for(int i = 0; i< ROWS.length; i++) {
-            console.out(" " + ROWS[i] + " ");  
+            console.out(" " + ALPHABET[i] + " ");
         }
 
         console.out("\n");

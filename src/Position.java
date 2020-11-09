@@ -1,9 +1,20 @@
 
 public class Position {
-    private String coordinate;
+    public static char[] ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+    private int row;
+    private int column;
 
     public Position(String coordinate) {
-        this.coordinate = coordinate;
+        for(int i = 0; i<ALPHABET.length; i++) {
+            if(ALPHABET[i] == coordinate.substring(0,1).charAt(0)) this.row = i + 1;
+        }
+        this.column = Character.getNumericValue(coordinate.substring(1,2).charAt(0));
+    }
+
+    public Position(int row, int column) {
+        this.row = row;
+        this.column = column;
     }
 
     public static boolean isValid(String coordinate) {
@@ -15,14 +26,21 @@ public class Position {
     }
 
     public char getRow() {
-        return this.coordinate.substring(0,1).charAt(0);
+        return ALPHABET[row + 1];
     }
 
     public int getColumn() {
-        return Character.getNumericValue(this.coordinate.substring(1,2).charAt(0));
+        return column;
     }
 
     public boolean equals(Position position) {
-        return coordinate.equals(position.coordinate);
+        if(position.getRow() != this.row) return false;
+        if(position.getColumn() != this.column) return false;
+        return true;
     }
+
+    public Position adding(int rows, int columns) {
+        return new Position(this.row + rows, this.column + columns);
+    }
+
 }

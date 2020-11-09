@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pawn extends Piece {
     public Pawn(Position position, Color color) {
         super(position, color);
@@ -14,7 +17,21 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean canMove(Position toPosition) {
-        return true;
+    public Position[] getPossibleMovements(Board board) {
+        List<Position> possibleMovements = new ArrayList<>();
+
+        if(board.isInBoard(this.getPosition().adding(0,1))) {
+            possibleMovements.add(this.getPosition().adding(0,1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(1,1)) && board.hasPiece(this.getPosition().adding(1,1), this.getColor() == Color.WHITE ? Color.BLACK : Color.WHITE)) {
+            possibleMovements.add(this.getPosition().adding(1,1));
+        }
+
+        if(board.isInBoard(this.getPosition().adding(1,-1)) && board.hasPiece(this.getPosition().adding(1,-1), this.getColor() == Color.WHITE ? Color.BLACK : Color.WHITE)) {
+            possibleMovements.add(this.getPosition().adding(1,-1));
+        }
+
+        return (Position[]) possibleMovements.toArray();
     }
 }
